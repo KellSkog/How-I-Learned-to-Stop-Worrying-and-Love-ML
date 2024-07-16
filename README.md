@@ -182,9 +182,52 @@ Ah, the video was missing the all essential plt.show() :-D<br>
 
 ### Revisiting ML Pipeline
 ### Data Scaling: The problem
+Different algorithms has different expectations on scaling<br>
+e.g. Normal distribution or Euclidian distance.
+K-Means Clustering do rely on euclidian distance.
+Surprisingly, Euclidian distance will not only change when switching between units (cm, inch) it can also cause the ordering of datapoints to change:<br>
+Different points become neighbors.
+
 ### Data Scaling: The Solution
+- Standardization
+Removing the mean and scaling to unit variance.
+- MinMax scaling
+Rescaling all attributes to range between zero and one.
+- Normalization
+Rescaling each obervation (row) to unit value.
+
+<u>MinMax scaling</u>
+As a rule of thumb always scale the data when the underlying algorithm operates on distance.
 ### The need for data segregation
+Data segregation relates to the practice of reserving some data from being used during training so it can be used to evaluate the trained model.
+- Overfitting
+When the training/model fails to represent the data and insted tracks every datapoint
+- Fitting
+When the model reaches a reasonable fit
+- Underfitting
+When the model oversimplifies and fails to accomodate all data.
 ### Train Test Split
+- Train/Test Split
+Train on 70-80% of data and test on 20-30%
+Take care to eliminate source of bias: Train on winter, test in summer. Randomize!
+
 ### KFlod Cross Validation
+- K-Fold Cross Validation
+K = 10 has empirically been found reasonable.
+Training and testing technique
+- Split the dataset i K groups (folds)
+- Choose one group as a test set and another for training
+- Train and calculate accuracy
+- Rinse and repeat
+- Calculate average accuracy from all training rounds
+
+K-fold can be significantly slower.
 ### Welcoming scikit-learn
+[SciKit learn train_test_split](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html)
+
+
+
 ### Demo: Data Segregation Techniques
+![](/Week%201/Day2/Progress67.png)
+
+## Implementing Your Regression Solution

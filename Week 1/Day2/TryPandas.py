@@ -2,6 +2,9 @@ import pandas as pd
 from matplotlib import pyplot as plt
 from pandas.plotting._matplotlib import scatter_matrix
 import seaborn as sns # Heatmap
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import KFold
+import numpy as np
 
 def histo(dataFrame):
     dataFrame.hist(sharex=False, sharey=False,xlabelsize=15, ylabelsize=15, color='orange', figsize=(15,15))
@@ -27,6 +30,22 @@ def heatmap(dataFrame):
     plt.style.use('default')
     sns.heatmap(dataFrame.corr(), annot = True)
     plt.show()
+
+def modelSelection():
+    x,y = np.arange(10).reshape((5,2)), range(5)
+    # print(f'X: {x}\n Y: {list(y)}')
+    xTrain, xTest, yTrain, yTest = train_test_split(x, y, test_size=0.3, random_state=42)
+    print(f'xTrain {xTrain}')
+    print(f'xTest {xTest}')
+    print(f'yTrain {yTrain}')
+    print(f'yTest {yTest}')
+def kFold():
+    dataset = range(16)
+    KFCrossValidator = KFold(n_splits=4, shuffle=False)
+    KFdataset = KFCrossValidator.split(dataset)
+    print('{} {:^61} {}'.format('Round', 'Training set', 'Test set'))
+    for iteration, data in enumerate(KFdataset, start=1):
+        print('{:^9} {} {:^25}'.format(iteration, data[0], str(data[1])))
 
 def main():
     # https://pandas.pydata.org/pandas-docs/stable/user_guide/options.html
@@ -64,7 +83,9 @@ def main():
     # density(df)
     # box(df)
     # scatter(df)
-    heatmap(df)
+    # heatmap(df)
+    # modelSelection()
+    kFold()
 
 if __name__ == '__main__':
     main()
