@@ -42,10 +42,22 @@ def main():
     # print(f'First five rows:\n{dataFrame.head()}')
     # print(f'Describe dataset \n{dataFrame.describe()}')
     # print(f"Pearson\n{dataFrame.corr(method='pearson')}")
+    '''FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+    The behavior will change in pandas 3.0.
+    This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
 
-    df = dataFrame
-    df.month.replace(('jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'), (1,2,3,4,5,6,7,8,9,10,11,12), inplace=True)
-    df.day.replace(('mon','tue','wed','thu','fri','sat','sun'), (1,2,3,4,5,6,7), inplace=True)
+    For example, when doing 'df[col].method(value, inplace=True)', 
+    try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, 
+    to perform the operation inplace on the original object.'''
+    # Fixed!
+    df = dataFrame.copy()
+    month_mapping = {'jan': 1, 'feb': 2, 'mar': 3, 'apr': 4, 'may': 5, 'jun': 6,
+                 'jul': 7, 'aug': 8, 'sep': 9, 'oct': 10, 'nov': 11, 'dec': 12}
+    df['month'] = df['month'].replace(month_mapping)
+
+    day_mapping = {'mon': 1, 'tue': 2, 'wed': 3, 'thu': 4, 'fri': 5, 'sat': 6, 'sun': 7}
+    df['day'] = df['day'].replace(day_mapping)
+
     # print(f'First five rows:\n{df.head()}')
     # print(f"Pearson\n{df.corr(method='pearson')}")
     # histo(df)

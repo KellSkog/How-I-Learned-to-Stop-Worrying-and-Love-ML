@@ -115,7 +115,9 @@ Univariant measures refer to measures that rely only on a single variable,
 [Correlation Coefficients: Positive, Negative, and Zero](https://www.investopedia.com/ask/answers/032515/what-does-it-mean-if-correlation-coefficient-positive-negative-or-zero.asp)
 $$
 Cor(x,y) = \frac{\Sigma(\bar{x}-u_x)(\bar{y}-u_y)}{\sqrt{\Sigma(\bar{x}-u_x)^2(\bar{y}-u_y)^2}}
-$$
+$$<br>
+Looked so good in the VS Code<br>
+![](/Week%201/Day2/CorrelationCoeff.png)
 
 Beware of correlation fallacy, correlation does not imply causation!
 
@@ -177,3 +179,12 @@ Ah, the video was missing the all essential plt.show() :-D<br>
 ![](/Week%201/Day2/Progress50.png)
 
 ## Making Your Data Ready for the ML Model
+
+### Revisiting ML Pipeline
+### Data Scaling: The problem
+### Data Scaling: The Solution
+### The need for data segregation
+### Train Test Split
+### KFlod Cross Validation
+### Welcoming scikit-learn
+### Demo: Data Segregation Techniques
