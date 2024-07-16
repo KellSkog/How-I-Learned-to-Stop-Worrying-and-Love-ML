@@ -1,5 +1,6 @@
 # How-I-Learned-to-Stop-Worrying-and-Love-ML
-My journey from noob to proficient ML coder, picking up a bit of MarkDown on the way :-)
+My journey from noob to proficient ML coder, picking up a bit of MarkDown on the way :-)<br>
+Markdown is like meetings: where minutes are kept, but hours are lost.
 
 # Week 1 Day 1
 ## Module 2
@@ -46,7 +47,7 @@ Adapts to rewards received based on actions changing the state of the environmen
 
 ### Forest Fire Forecast
 forestfires.csv  
-Predict area burnt by supervised regression learning.  
+Problem definition: predict area burnt by supervised regression learning.  
 Require background in linear algebra, statistics and probability.
 
 Google [Colaboratory](https://colab.google/)
@@ -81,9 +82,98 @@ A bit of maintenance:
 > python -m pip install scipy  
 > pip install matplotlib==3.9.0  
 > pip install pandas
+> python -m pip install seaborn
 
 tryNump.py demos numpy, matplotlib and pandas loading forestfire.csv
 
 ![](/Week%201/Day%201/Progress30.png)
 
-##Module 4
+## Module 4
+> In this module, we will continue with more detailed data preparation.
+We will do data analysis to understand the datas shape, its relationships, its mathematical characteristics and visualize it. This will help us to make a more informed decision around the usage of the right machine learning algorithms, among other benefits. We need to analyze our data as a part of the preparation process for the subsequent steps in the machine learning pipeline. This data analysis is also called data science.
+### Revisiting ML Pipeline
+> data preparation.
+### Introducing Data Analysis
+> Data analysis is the process of inspecting, cleansing, transforming, and modeling data with the goal of discovering useful information and informing conclusion and supporting decision‑making
+Wikipedia.
+- Identify dataset distribution.
+- Choosing right ML algorithm.
+- Extracting the right features.
+- Different models needs to be trained at the same time and select the best performing.
+- Presentation of result.
+
+> Exploratory data analysis
+- Numerical summaries e.g. mean or average
+- Graphical summaries e.g. histogram
+
+### Univariant Numerical Analysis
+This section will introduce the numerical summaries and will be more or less a refresher to the basic statistics.<br>
+Univariant measures refer to measures that rely only on a single variable,
+
+### Bivariant Numerical Analysis
+- Correlation, measure of extent of linear relativity<br>
+[Correlation Coefficients: Positive, Negative, and Zero](https://www.investopedia.com/ask/answers/032515/what-does-it-mean-if-correlation-coefficient-positive-negative-or-zero.asp)
+$$
+Cor(x,y) = \frac{\Sigma(\bar{x}-u_x)(\bar{y}-u_y)}{\sqrt{\Sigma(\bar{x}-u_x)^2(\bar{y}-u_y)^2}}
+$$
+
+Beware of correlation fallacy, correlation does not imply causation!
+
+[Pandas Options and settings](https://pandas.pydata.org/pandas-docs/stable/user_guide/options.html)<br>
+[pandas.DataFrame.corr](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html)
+
+### Demo: Descriptive Stats - Part One
+
+### Demo: Descriptive Stats - Part Two
+Here I run into problems with
+> print(f"Pearson\n{dataFrame.corr(method='pearson')}")<br>
+> ValueError: could not convert string to float: 'mar'
+
+While the course video shows there is no problem, and susequently fixes the problem...???<br>
+Wow that was a bit of a detour<br>
+Deprecation had to be handled "pd.set_option('future.no_silent_downcasting', True)"<br>
+.replace did not work as expected, it did not return the dataFrame object as expected with 'inplace=False'
+
+The replacements done here are not a good solution, there are better methods that should be used, but are left out of this course!!
+
+### Data Visualization
+Graphical summaries
+Distributions
+- Normal, Gaussian, bell shaped
+- Skewed, the peak is shifted to one side.
+- Exponential
+
+Helps detect impossible values, identify the data shape and errors in the data.<br>
+
+Box and Whisker plot:<br>
+![](/Week%201/Day2/BoxAndWiskerPlot.png)
+
+IQR (Inter Quartal Range) the interval between the upper and lower quartile.
+Upper extreme = Upper quartile + 1.5IQR<br>
+Lower extreme = lower quartile - 1.5IQR
+
+### Demo: Data Visualization - Part One
+Oh wow, more friction:
+> FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+>
+>For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+With this warning here are the histograms of the forestfire data:
+![](/Week%201/Day2/Histograms.png)
+
+![](/Week%201/Day2/pdf.png)
+
+![](/Week%201/Day2/box.png)
+
+### Demo: Data Visualization - Part Two
+![](/Week%201/Day2/scatter.png)
+
+Alas seaborn library "Successfully installed seaborn-0.13.2"<br>
+Failed to produce a plot :-c
+Ah, the video was missing the all essential plt.show() :-D<br>
+![](/Week%201/Day2/Heatmap.png)
+
+![](/Week%201/Day2/Progress50.png)
+
+## Making Your Data Ready for the ML Model
