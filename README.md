@@ -114,6 +114,7 @@ Univariant measures refer to measures that rely only on a single variable,
 - Correlation, measure of extent of linear relativity<br>
 [Correlation Coefficients: Positive, Negative, and Zero](https://www.investopedia.com/ask/answers/032515/what-does-it-mean-if-correlation-coefficient-positive-negative-or-zero.asp)
 $$
+\displaystyle
 Cor(x,y) = \frac{\Sigma(\bar{x}-u_x)(\bar{y}-u_y)}{\sqrt{\Sigma(\bar{x}-u_x)^2(\bar{y}-u_y)^2}}
 $$<br>
 Looked so good in the VS Code<br>
@@ -225,9 +226,133 @@ K-fold can be significantly slower.
 ### Welcoming scikit-learn
 [SciKit learn train_test_split](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html)
 
-
-
 ### Demo: Data Segregation Techniques
 ![](/Week%201/Day2/Progress67.png)
 
 ## Implementing Your Regression Solution
+
+### Revisiting ML Pipeline
+- Model training
+- Model Evaluation
+
+### Scoping Your Focus
+Three types of ML
+- Supervised
+- Unsupervised
+- Reinforcement
+
+Two types of Supervised Learning algorithms
+- Regression<br>
+For continous values.
+- Classification<br>
+For discrete (categorial) values.<br>
+Model and algorithm is commonly used interchangably but strictly the model
+is the outcome of training an algorithm.<br>
+![](/Week%201/Day3/Algorithms.png)
+
+Focusing on Supervised Regression algo.<br>
+To know more about different algorithm types for different types of learning, I would highly recommend<br> [How to Think About Machine Learning Algorithms](https://app.pluralsight.com/library/courses/machine-learning-algorithms/table-of-contents) by Swetha Kolalapudi (2016).
+### Introducing Derivatives
+"If we want to get the minimum of a function, then we calculate its derivative when it's equal to zero."<br>
+WTF. It's not very difficult to calculate the derivative when it is equal to zero (hint, it's equal to 0)
+
+### Linear Regression
+Least square regression.<br>
+The error is defined as the difference between the observed value and the estimated value.<br>
+The **sum of residuals** is calculated as the sum of the squared differences between all training values Yn and estimates (AXn + B):<br>
+$$
+\displaystyle
+\Sigma(Yn - (AXn + B))^2
+$$
+
+[The Method of Least Squares](https://web.williams.edu/Mathematics/sjmiller/public_html/BrownClasses/54/handouts/MethodLeastSquares.pdf)
+
+### Variance Bias Tradeoff
+Variance defined as the square of the standard deviation, tends to increase with higher ability to fit training data (overfitting).
+$$
+\displaystyle
+Var(x) = \sigma^2  = \frac{\Sigma(\bar{x} - u)^2}{N}
+$$
+
+Bias<br>
+Inability to track training data which stems from poor understanding of problem, high complexity can reduce bias.
+
+A simpler algorithm commonly have higher bias and lower variance.
+Attempts to reduce variance will increase bias and vise versa.
+
+Thru **Regularization** model parameters or complexity is tuned to improve prediction and minimize both varance and bias.
+- Ridge regression
+- Lasso regression
+- Elastic Net Regression<br>
+Combines techniques from Ridge & Lasso
+
+### Other Regression Algorithms
+<u>K-neighbors</u> aka K nearest neighbors. (Distance measurments)<br>
+<u>Support Vector Regression (SVR)</u> Used for both regression and classification (Support Vector Machine).<br>
+<u>Desicion Tree Regressor</u>
+
+### Model Evaluation
+- Max Error
+- Mean Absolute Error -more robust on outliers
+- Mean Squared Error -more effectivly penalizes outliers
+- Coefficient of Determination<br>
+$$
+\displaystyle
+R^2 = \frac{Var(mean) - Var(fit)}{Var(mean)} = Correlation^2
+$$
+
+### Demo: Deploying and Testing the Model - Part 1
+[MSE is negative when returned by cross_val_score](https://github.com/scikit-learn/scikit-learn/issues/2439)
+
+### Demo: Deploying and Testing the Model - Part 2
+> pip install Flask<br>
+> pip install flask_ngrok
+
+Well well...
+<p>Usage of ngrok requires a verified account and authtoken.
+
+Sign up for an account: https://dashboard.ngrok.com/signup
+Install your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken
+
+ERR_NGROK_4018</p>
+
+[Building_Your_First_Machine_Learning_Solution.ipynb](https://github.com/smarter-code/PS-BuildingYourFirstMachineLearningSolution/blob/main/Building_Your_First_Machine_Learning_Solution.ipynb)<br>
+
+![](/Week%201/Day3/Progress87.png)
+
+## What Is Next?
+### Handling Features
+Part of data preparation
+- Feature engineering
+- Converting birthdate to age
+- Converting weekdays to numbers
+- Feature scaling
+- Feature scaling
+
+### Model Improvement
+Iterating beween training and evaluation
+- Ensamble methods, combines different ML techniques<br>
+    Common categories
+    - Bagging
+    - Boosting
+    - Voting
+
+### Automated ML
+AI as a service<br>
+After finishing the problem definition the source data can be provided via an API to an AI service (AIaaS).
+- Microsoft Azure
+- Amazon AWS
+- Google Cloud
+- IBM Watson<br>
+Well suited for standardized problems like:
+- Vision
+- Text to speach
+- Sentiment analysis<br>
+
+### Operationalization
+
+### Team Data Science Process
+[What is the Team Data Science Process?](https://learn.microsoft.com/en-us/azure/architecture/data-science-process/overview)<br>
+An agile iterative data science methodology to deliver predictive analytics solutions.<br>
+![](https://learn.microsoft.com/en-us/azure/architecture/data-science-process/media/lifecycle/tdsp-lifecycle2.png)<br>
+![](/Week%201/Day3/Progress100.png)
