@@ -87,11 +87,11 @@ The name can be given characteristics pertaining to gender (Features):
 - Freely available :-)<br>
 Any big dataset is a learning opportunity - it can be seized via Sentiment Analysis.
 
-e.g. tweets can be grouped on Polarity, as being positive, negative or neutral, so polarity is a possible feature of the dataset.
+e.g. tweets can be grouped on Polarity, as being positive, negative, so polarity is a possible feature of the dataset.
 
 > Problem statement
 
-Classify a tweet (problem instance) with a label of Positive, Negative or Neutral.
+Classify a tweet (problem instance) with a label of Positive, Negative or.
 
 > Features
 
@@ -110,10 +110,39 @@ Represent the text of the problem instance with the occurance count e.g.<br>
 
 ## Module 4 Solving Classification Problems
 ### Using the Naive Bayes Algorithm for Sentiment Analysis
+The training data consists of labeled Term Frequncy Representation of comments.
+A ranomly picked comment has the probability of being positive = P0 (55%) & negative = 1 - P0 (45%), i.e. in this example 55% ov the comments are positive.<br>
+A positivity score is computed for every word i.e.<br>
+Pos<sub>Happy</sub> = Count of positive "Happy" / Count of all "Happy"<br>
+Neg<sub>Happy</sub> = 1 - Pos<sub>Happy</sub><br>
+P0 = count of positive words / count of words<br>
+
+The score of a comment (problem instance) is given by:<br>
+Pos<sub>comment</sub> = P0 * Pos<sub>word1</sub> * Pos<sub>word2</sub> *...<br>
+Neg<sub>comment</sub> = (1 - P0) * (1 - Pos<sub>word1</sub>) * (1 - Pos<sub>word2</sub>) *...<br>
+Label the comment as positive if Pos<sub>comment</sub> is greater than Neg<sub>comment</sub> <br>
+
 ### Understanding When to use Naive Bayes
+The Naive in Naive Bayes signifies that no context is considered, there is an assumption of independence. "Not bad" does not imply good.<br>
+However it still performs well, particularly with limited availability of training data.
 ### Implementing Naive Bayes
+[Download](https://archive.ics.uci.edu/dataset/331/sentiment+labelled+sentences)
+Ok the age of this course is beginning to show its age<br>
+expected:<br>
+![](/HowToThinkAboutMachineLearningAlgorithms/train_documents.png)<br>
+But it is:<br>
+> <Compressed Sparse Row sparse matrix of dtype 'int64'
+        with 31580 stored elements and shape (3000, 5159)><br>
+
+
 ### Detecting Ads Using Support Vector Machines
+A Support Vector Machine is used to find the bundary plane between sets of points. The points represent objects in an N-dimensional hypercube. It can only distiguish between two lables: either above or below the boudary.
 ### Implementing Support Vector Machines
+[Download](https://archive.ics.uci.edu/dataset/51/internet+advertisements)<br>
+ads.data is 10 MB and excluded from repository.
+In ads.data images are represented by over 1500 features and labeled Ad/Non-Ad.<br>
+[Exercises in solutions.py](/HowToThinkAboutMachineLearningAlgorithms/src/solutions.py)<br>
+![](/HowToThinkAboutMachineLearningAlgorithms/Progress43.png)
 
 ## Module 5 Predicting Relationships between Variables with Regression
 ### Understanding the Regression Setup
