@@ -166,11 +166,34 @@ In classification the training data is used to build a classifier<br>
 In regression the training data establish a relation between variables<br>
 ![](/HowToThinkAboutMachineLearningAlgorithms/Progress56.png)
 ## Module 6 Solving Regression Problems
+- Applying Linear reression to Beta of a stock.
+- Stochastic Gradient Method for Linear Regression.
+- Tweek SGD parameters for better performance.
+- Implement Linear Regression in Python<br>
+
 ### Introducing Linear Regression
+In case of forecasting Sales an approach could be:<br>
+Sales = 2 * Marketing Spend + 0.5 * Last weeks sale<br>
 ### Applying Linear Regression to Quant Trading
+Manipulating CAPM to get profit of a security: R<sub>i</sub> - R<sub>f</sub><br>
+We can plot this gain (beta) against some imaginative market gain
+as a simple 1-variable linear regression:<br>
+![](/HowToThinkAboutMachineLearningAlgorithms/CAPM%20beta.png)<br>
+
+The distance between an individual point and the regression line is the Error, aka Residuals.
+
 ### Minimizing Error Using Stochastic Gradient Descent
+![](/HowToThinkAboutMachineLearningAlgorithms/SGD%20error.png)<br>
+
 ### Finding the Beta for Google
 ### Implementing Linear Regression in Python
+mmmm...
+>ValueError: Input X contains NaN.<br>
+There were quite some mangling needed for this course written in Python 2, but I got it to work :-D<br>
+
+beta [0.26152312]<br>
+> $\>python .\HowToThinkAboutMachineLearningAlgorithms\src\solutions.py google<br>
+![](/HowToThinkAboutMachineLearningAlgorithms/Progress70.png)
  
 ## Module 7 Recommending Relevant Products to a User
 ### Appreciating the Role of Recommendations
