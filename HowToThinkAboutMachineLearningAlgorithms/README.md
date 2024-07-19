@@ -146,11 +146,25 @@ In ads.data images are represented by over 1500 features and labeled Ad/Non-Ad.<
 
 ## Module 5 Predicting Relationships between Variables with Regression
 ### Understanding the Regression Setup
+Input is called 'Independent variables' and output 'Dependent variables'.<br>
+Types of regression
+- Linear
+- Polynomial
+- Non-linear
+
+
 ### Forecasting Demand
+
 ### Predicting Stock Returns
+Using the Capital Asset Pricing Model, CAPM - used for pricing risky securities<br>
+![](/HowToThinkAboutMachineLearningAlgorithms/CAPM.png)
+
 ### Detecting Facial Features
+
 ### Contrasting Classification and Regression
- 
+In classification the training data is used to build a classifier<br>
+In regression the training data establish a relation between variables<br>
+![](/HowToThinkAboutMachineLearningAlgorithms/Progress56.png)
 ## Module 6 Solving Regression Problems
 ### Introducing Linear Regression
 ### Applying Linear Regression to Quant Trading
