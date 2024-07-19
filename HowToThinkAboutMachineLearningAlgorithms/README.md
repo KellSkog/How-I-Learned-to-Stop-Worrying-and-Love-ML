@@ -197,10 +197,26 @@ beta [0.26152312]<br>
  
 ## Module 7 Recommending Relevant Products to a User
 ### Appreciating the Role of Recommendations
+27 Sep 2016
+
 ### Predicting Ratings Using Collaborative Filtering
+Predict user ratings for products based on the users past behavior<br>
+A general term for any algorithm that relies solely on past behavior to produce recommendations.<br>
+The basic premise is that other users have the same opinion about products<br>
+they likely share opinion of other products too!<br>
 ### Finding Hidden Factors that Influence Ratings
+![](/HowToThinkAboutMachineLearningAlgorithms/MovieRecommendation.png)<br>
+![](/HowToThinkAboutMachineLearningAlgorithms/LatentFactorAnalysis.png)<br>
+![](/HowToThinkAboutMachineLearningAlgorithms/MinimizeError.png)<br>
 ### Understanding the Alternative Least Squares Algorithm
+ALS is a technique to minimize the error.<br>
+It searches for a solution to (r<sub>ui</sub> - q<sub>i</sub><sup>T</sup>p<sub>u</sub>)<sup>2</sup> = 0<br>
+by alternatingly fixing q<sub>i</sub> and solving for </sup>p<sub>u</sub>,<br>
+with fixing </sup>p<sub>u</sub> and solving for q<sub>i</sub>.
 ### Implementing ALS to Find Movie Recommendations
+Wow this was quite a bit of work compesating for API change of "implicit"<br>
+Hot movies [17, 89, 534]<br>
+![](/HowToThinkAboutMachineLearningAlgorithms/Progress83.png)
 
 ## Module 8 Clustering Large Data Sets into Meaningful Groups
 ### Understanding the Clustering Setup

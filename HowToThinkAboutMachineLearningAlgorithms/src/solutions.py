@@ -11,6 +11,12 @@ from sklearn.svm import LinearSVC
 from sklearn.linear_model import SGDRegressor, LinearRegression
 from sklearn.impute import KNNImputer # Replace NaN with K-Nearest Neighbor
 
+# Implementing ALS for movie recommendation
+import implicit 
+from scipy.sparse import coo_matrix, csr_matrix
+from threadpoolctl import threadpool_limits
+import heapq
+
 import matplotlib.pyplot as plt
 
 parser = argparse.ArgumentParser()
@@ -19,6 +25,7 @@ parser_bayes = subparsers.add_parser('bayes', help='Run the naive Bayes example'
 parser_svm = subparsers.add_parser('svm', help='Run the Support Vector Machine example')
 parser_plot = subparsers.add_parser('plot', help='Plot the graph of Ri-Rf, Rm-Rf')
 parser_google = subparsers.add_parser('google', help='Linear regress Google stock')
+parser_movie = subparsers.add_parser('movie', help='ALS for movie recommendation')
 
 def naiveBayes():
     with open("HowToThinkAboutMachineLearningAlgorithms/src/imdb_labelled.txt", 'r') as text_file:
@@ -110,6 +117,31 @@ def google():
     regressor.fit(reshaped, google_minus_tbond.values)
     print(f'beta {regressor.coef_}')
 
+def movie():
+    threadpool_limits(1, "blas")
+    # check_blas_config()
+    filename = 'HowToThinkAboutMachineLearningAlgorithms/src/u.data'
+    data = pd.read_csv(filename, sep='\t', header=None, usecols=[0,1,2], names=['userId', 'itemId', 'rating'])
+    data['userId'] = data['userId'].astype('category')
+    data['itemId'] = data['itemId'].astype('category')
+    
+    ratingMatrix = coo_matrix((data['rating'].astype(float),
+        (data['itemId'].cat.codes.copy(),
+        data['userId'].cat.codes.copy())))
+    csrMatrix = ratingMatrix.tocsr()
+    '''RuntimeWarning: OpenBLAS is configured to use 16 threads. 
+    It is highly recommended to disable its internal threadpool by setting the environment variable 'OPENBLAS_NUM_THREADS=1' 
+    or by calling 'threadpoolctl.threadpool_limits(1, "blas")'. 
+    Having OpenBLAS use a threadpool can lead to severe performance issues here.'''
+    model = implicit.als.AlternatingLeastSquares(factors=10, regularization=0.01)
+    model.fit(csrMatrix)
+    # userFactors, itemFactors = implicit.als.AlternatingLeastSquares(ratingMatrix, factors=10, regularization=0.01)
+    userFactors = model.user_factors
+    itemFactors = model.item_factors
+
+    user196 = itemFactors.dot(userFactors[196])
+    sugestions = heapq.nlargest(3, range(len(user196)), user196.take)
+    print(f'Hot movies {sugestions}')
 
 def main():
     # naiveBayes()
@@ -123,6 +155,8 @@ def main():
         plot()
     elif args.command == 'google':
         google()
+    elif args.command == 'movie':
+        movie()
     else:
         parser.print_help()
 
