@@ -1,4 +1,7 @@
 # How to Think About Machine Learning Algorithms
+Swetha Kolalapudi<br>
+Co-founder, [Loonycorn](https://www.loonycorn.com)
+
 ## Module 2: Introducing Machine Learning
 ### Recognizing Machine Learning Applications
 ### Knowing When to Use Machine Learning
@@ -214,16 +217,146 @@ It searches for a solution to (r<sub>ui</sub> - q<sub>i</sub><sup>T</sup>p<sub>u
 by alternatingly fixing q<sub>i</sub> and solving for </sup>p<sub>u</sub>,<br>
 with fixing </sup>p<sub>u</sub> and solving for q<sub>i</sub>.
 ### Implementing ALS to Find Movie Recommendations
+[Dataset](https://grouplens.org/datasets/movielens/100k/)<br>
 Wow this was quite a bit of work compesating for API change of "implicit"<br>
 Hot movies [17, 89, 534]<br>
 ![](/HowToThinkAboutMachineLearningAlgorithms/Progress83.png)
 
 ## Module 8 Clustering Large Data Sets into Meaningful Groups
+
 ### Understanding the Clustering Setup
+Grouping things together that share some similarity.
+- Maximize intracluster similarity
+- Minimize intrecluster similarity
+
+Represent user by some feature e.g.
+- Age
+- Location
+- Frequency of usage of topics
+
+Similarity is expressed as closeness in an N-space.
+Chose features with stron correlation e.g.
+- Frequency of early logins
+- Frequency of late logins
+- Login duration
+
+Select a suitable clustering algorithm, e.g.
+- K-Means
+- Hierarchical
+- Density based
+- Distribution based
+- ...
+
+
+
 ### Contrasting Clustering and Classification
+Casification differentiates into pre-defined categories, it is used when we try to chart subjects based on specific questions we have e.g.
+- Which picture has cars in it<br>
+- ...
+
+Training is done with pre classified data. It is supervised<br>
+
+Clustering groups subjects into categories that emerge from patterns in the data<br>
+there is no training, the algorithm explore the data and clustering emerges.<br>
+It is unsupervised.
+
+Classification and Clustering can be chained using clustering to discover groups and the use classification to identify a specific subject as belonging to any of the dicovered groups.
+
 ### Document Clustering with K-Means
+Document is a general term for a piece of text.
+One way to crate a feature set that represent text as numeric attributes is by 
+Term Frequency Representation, mentioned before. It can be enhance by increasing weight to uncommon words and decerease weight to common words.<br>
+In Term Frequency - Inverse Document Frequency: (TF-IDF)<br>
+Weight is given by the inverse of number of documents the word is found in, in the entire corpus (all the problem set documents).
+Each document is represented by a tuple of N numbers where N is the number of unique words in the corpus.
+
+Each document is thereby represented as a point in an N-dimensional space.
+K-Means, means that we are looking for K clusters thus create K centroids, one for each cluster.<br>
+There are several tecniques that can be employed to help the algorithm to converge faster, these are outside the scope of this course. Typical ;-)<br>
+The path to convergence is assigning the closest neighboring points to the nearest mean. Recalculate each mean as a cetroid of its clustered points.
+Rinse and repeat until the k-means "stop" moving.
+
 ### Implementing K-Means Clustering
+[Dataset](https://archive.ics.uci.edu/ml/datasets/Sentiment+Labelled+Sentences) Same as Bayes sentiment analysis<br>
+> Initialization complete<br>
+Iteration 0, inertia 1909.4556230843732.<br>
+Iteration 1, inertia 959.5404101172996.<br>
+Iteration 2, inertia 958.5047602912556.<br>
+Iteration 3, inertia 958.3172023525804.<br>
+Iteration 4, inertia 958.2909484603194.<br>
+Converged at iteration 4: strict convergence.<br>
+['This review is long overdue, since I consider A Tale of Two Sisters to be the single greatest film ever made.  ', '1']<br>
+["I'll put this gem up against any movie in terms of screenplay, cinematography, acting, post-production, editing, directing, or any other aspect of <br>film-making.  ", '1']
+['" The structure of this film is easily the most tightly constructed in the history of cinema.  ', '1']<br>
+['I can think of no other film where something vitally important occurs every other minute.  ', '1']<br>
+
+At this point the algorithm has proposed possible clusterings which require deeper analysis to discover useful themes.<br>
+![](/HowToThinkAboutMachineLearningAlgorithms/Progress94.png)
 
 ## Module 9 Wrapping up and Next Steps
 ### Surveying Machine Learning Techniques
+- Problem statement, each problem type has its own workflow.
+    - Classification
+        - According to predefined cetegories
+        - Data is in the form of attributes
+        - Algorithms
+            - Naive Bayes
+            - Support Vector Machines
+            - Tree based model (decision tree, random forrest, ...)
+            - K-nearest neighbors
+            - Logistic regression
+            - Other....
+    - Regression
+        - Quatify reletionships between two sets of variables.
+        - Find a continous value
+        - Data is in the form of variables, like weight
+        - Algorithms
+            - Linear regression
+            - Non-Linear regression
+    - Clustering
+        - Identify themes in large datasets
+        - select attributes of the data relating to the sought insights.
+        - Algorithms
+            - K-Means
+            - Hierarchichal
+            - Density Based
+            - Distribution Based
+            - ...
+    - Recommendation
+        - Give recommendation based on past behavior
+        - Data commonly contains user and product identities and rating in some form
+        - Algorithms
+            - Collaborative filtering
+                - Alternating Least Squares
+                - Nearest Neigbor Model
+                - ...
+            - Association Rules
+            - Content based Filtering
+
 ### Looking Ahead
+- To reresent data there are several topics to explore further, such as:
+    - Data Munging
+        - Identifying and handle missing values
+        - Identifying and handle corrupt data
+        - Python, Spark & R skills helps with data exploration
+    - Feature Extraction<br>
+        data is often
+        - Unstructured
+        - Sematically complex
+        - In diverse forms (images, videos, text..)
+    - Dimensionality Reduction
+        - Whe features end up in the 100's or 1000's (curse of dimensionality), computing complexity has to managed
+            - Principal Component Analysis
+            - Feature Selection Techniques
+    - Feature Engineering (a black art)<br>
+    How to find abstractions that can yield more meaning than the raw set of features
+
+    On algorithmic application
+    - Chosing algorithm
+    - Model Selection<br>
+    Many algorithms have parameters to tweak
+        - Hyper Parameter tuning
+        - Cross validation
+        - Ensembling
+
+![](/HowToThinkAboutMachineLearningAlgorithms/Progress100png.png)

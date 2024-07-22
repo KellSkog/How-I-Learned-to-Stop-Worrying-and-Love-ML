@@ -17,6 +17,11 @@ from scipy.sparse import coo_matrix, csr_matrix
 from threadpoolctl import threadpool_limits
 import heapq
 
+# Implementing K-Means Clustering
+import csv
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.cluster import KMeans
+
 import matplotlib.pyplot as plt
 
 parser = argparse.ArgumentParser()
@@ -26,6 +31,7 @@ parser_svm = subparsers.add_parser('svm', help='Run the Support Vector Machine e
 parser_plot = subparsers.add_parser('plot', help='Plot the graph of Ri-Rf, Rm-Rf')
 parser_google = subparsers.add_parser('google', help='Linear regress Google stock')
 parser_movie = subparsers.add_parser('movie', help='ALS for movie recommendation')
+parser_kmeans = subparsers.add_parser('kmeans', help='K-means sentiment analysis')
 
 def naiveBayes():
     with open("HowToThinkAboutMachineLearningAlgorithms/src/imdb_labelled.txt", 'r') as text_file:
@@ -143,6 +149,29 @@ def movie():
     sugestions = heapq.nlargest(3, range(len(user196)), user196.take)
     print(f'Hot movies {sugestions}')
 
+def kmeans():
+    with open('HowToThinkAboutMachineLearningAlgorithms/src/imdb_labelled.txt', 'r') as textFile:
+              lines = textFile.read().split('\n')
+    lines = [line.split('\t') for line in lines if len(line.split('\t')) == 2 and line.split('\t')[1] != '']
+
+    trainDocuments = [line[0] for line in lines]
+    tfidfVectorizer = TfidfVectorizer(max_df=0.5, min_df=2, stop_words='english') # stop_words='english' removes words like a, an, the, is
+    trainDocuments = tfidfVectorizer.fit_transform(trainDocuments)
+    km = KMeans(n_clusters=3, init='k-means++', max_iter=100, n_init=1, verbose=True)
+    km.fit(trainDocuments)
+    # for count in range(3):
+    #     for i in range(len(lines)):
+    #         if km.labels_[i] == 0:
+    #             print(lines[i])
+    cluster = 2
+    count = 0
+    for i in range(len(lines)):
+        if count > 3:
+            break
+        if km.labels_[i] == cluster:
+            print(lines[i])
+            count += 1
+
 def main():
     # naiveBayes()
     # supportVectorMachine()
@@ -157,6 +186,8 @@ def main():
         google()
     elif args.command == 'movie':
         movie()
+    elif args.command == 'kmeans':
+        kmeans()
     else:
         parser.print_help()
 

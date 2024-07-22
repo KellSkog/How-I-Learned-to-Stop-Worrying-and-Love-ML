@@ -14,3 +14,5 @@ The initial assessment seems about right
 [Course 1: Building Your First Machine Learning Solution](/BuildingYourFirstMachineLearningSolution/README.md)
 
 [Course 2: How to Think About Machine Learning Algorithms](/HowToThinkAboutMachineLearningAlgorithms/README.md)
+
+![](/Week%201/SkillTrackJuly29.png)
